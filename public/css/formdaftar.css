@@ -1,0 +1,89 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to right, #f39c12, #f1c40f 60%, white 40%);
+}
+
+@font-face {
+    font-family: 'prima';
+    src: url(../fonts/PrimaveraSans-Regular.ttf)format('truetype');
+}
+
+.db {
+    color: rgb(255, 204, 0);
+    ;
+    padding: 100px;
+    padding-left: 59%;
+    margin-top: -33%;
+}
+
+.table {
+    font-size: 20px;
+    font-family: 'prima';
+    padding-left: 105px;
+}
+
+.inputdt {
+    border-radius: 20px;
+    padding-left: 15px;
+    width: 300px;
+    height: 25px;
+    background: white;
+    outline: none;
+}
+
+.btndaftar {
+    background-color: rgb(255, 204, 0);
+    color: white;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 10px 130px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.btndaftar:hover {
+    background: rgb(231, 146, 0);
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    width: 93%;
+    padding: 7px;
+}
+
+.sudahlogin {
+    font-size: 15px;
+    padding-top: 10px;
+    color: #b5b5b5;
+}
+
+.sudahhlogin {
+    text-decoration: none;
+    color: rgb(255, 204, 0);
+    font-size: 15px;
+}
+
+.hellotxt {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 80px;
+    color: white;
+    margin-left: 15%;
+    padding-top: 5%;
+}
+
+.txtkcl {
+    font-size: 20px;
+    font-family: 'prima';
+}
+
+.logoweb {
+    width: 170px;
+    height: 100px;
+    padding-left: 20px;
+}

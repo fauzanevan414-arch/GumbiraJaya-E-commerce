@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'superduty';
+    src: url(../fonts/SuperDuty.ttf)format('truetype');
+}
+
+@font-face {
+    font-family: 'creamy';
+    src: url(../fonts/CreamyLatte.otf)format('truetype');
+}
+
+@font-face {
+    font-family: 'kicau';
+    src: url(../fonts/KicauMania.otf)format('truetype');
+}
+
+@font-face {
+    font-family: 'prima';
+    src: url(../fonts/PrimaveraSans-Regular.ttf)format('truetype');
+}
+
+@font-face {
+    font-family: 'montserratitalic';
+    src: url(../fonts/Montserrat-Italic-VariableFont_wght.ttf)format('truetype');
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf)format('truetype');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    background-color: #F5F5F5;
+}
+
+h1 {
+    font-family: 'montserrat';
+    color: rgb(0, 0, 0);
+    padding-left: 5%;
+}
+
+h3 {
+    color: #555555;
+}
+
+#db {
+    backdrop-filter: blur(5px);
+    background: linear-gradient(180deg, #f39c12, #f1c40f);
+    padding: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    height: 85px;
+    display: flex;
+}
+
+.logo {
+    color: white;
+    padding-left: 5px;
+    margin-top: -1%;
+    width: 200px;
+}
+
+.halutama {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 4%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.halutama:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+
+.kategori {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 4%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.kategori:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+
+.hubungi {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 5%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.hubungi:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.ltr {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding-left: 2%;
+}
+
+.itembarang {
+    background: white;
+    font-family: 'prima';
+    padding: 20px;
+    margin: 40px 0;
+    border-radius: 10px;
+    margin-right: 10%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itembarang:hover {
+    transform: translateY(-10px);
+}
+
+.harga {
+    font-family: 'kicau';
+    font-size: 30px;
+    color: orange;
+}
+
+button {
+    color: white;
+    text-align: center;
+    border: none;
+    font-size: 15px;
+    background: orange;
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgb(255, 200, 0);
+}
+
+.stok {
+    font-family: 'prima';
+    color: #555555;
+    margin-top: -15px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search {
+    margin-left: -20px;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 5px 30px;
+}
+
+.search input {
+    margin-left: -10%;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.search button {
+    margin-right: -30%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: 40px;
+}
+
+.keranjang {
+    margin-left: 40px;
+    filter: invert(100%);
+    cursor: pointer;
+}
+
+.gmr {
+    border-radius: 5px;
+}
+
+footer {
+    background: linear-gradient(180deg, #f39c12, #f1c40f);
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-family: 'prima';
+}
+
+h2 {
+    font-family: 'prima';
+    padding-left: 20px;
+}

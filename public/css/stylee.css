@@ -1,0 +1,13 @@
+body{
+   background-color: chartreuse;
+   background-repeat: repeat;
+
+}
+
+#bagi_dua{
+    color: red;
+    margin-left: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100px;
+    background-color: aqua;
+}
