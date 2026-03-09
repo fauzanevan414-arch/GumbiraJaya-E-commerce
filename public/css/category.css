@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf)format('truetype');
+}
+.ltr {
+    display: grid;
+    padding-left: 2%;
+}
+.buttonkategori{
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-right: 90%;
+    text-align: center;
+
+}
+.buttonkategori:hover {
+    transform: translateY(-10px);
+}
+.gmbr{
+    width: 50px;
+    height: 50px;
+}
+html,
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    background-color: #F5F5F5;
+}
+#dasb {
+    backdrop-filter: blur(5px);
+    background: linear-gradient(180deg, #f39c12, #f1c40f);
+    padding: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    height: 85px;
+    display: flex;
+}
+.logo {
+    color: white;
+    padding-left: 5px;
+    margin-top: -1%;
+    width: 200px;
+}
+.halutama {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 4%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.halutama:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+.hubungi {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 5%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.hubungi:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+h3{
+    font-family: 'montserrat';
+}
+footer {
+    background: linear-gradient(180deg, #f39c12, #f1c40f);
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-family: 'prima';
+}

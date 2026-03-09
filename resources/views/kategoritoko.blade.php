@@ -11,8 +11,16 @@
         <div class="nav-container">
             <img src="{{asset('images/logoweb.png')}}" class="logo" alt="foto">
             <a href="{{route('indexsudahlog')}}" class="halutama">Home</a>
+            <a href="{{route('hubungi1')}}" target="" class="hubungi">Contact</a>
         </div>
+  </div>
+  <div class="ltr">
+    <div class="buttonkategori">
+      <img class="gmbr" src="{{asset('images/perkakas.png')}}" alt="foto">
+      <h3>Perkakas</h3>
     </div>
+  </div>
+  
   
   <footer>
     <p>&copy; 2026 GumbiraJaya | All Rights Reserved</p>

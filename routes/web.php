@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KategoriController;
 
 Route::post('/daftar', [AuthController::class, 'daftar'])->name('daftar');
+Route::get('/kategori', [KategoriController::class, 'index']);
 
 Route::get('/', function(){
     return view('index');
