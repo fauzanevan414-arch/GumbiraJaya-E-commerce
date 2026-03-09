@@ -15,10 +15,12 @@
         </div>
   </div>
   <div class="ltr">
+    @foreach($kategori as $k)
     <div class="buttonkategori">
-      <img class="gmbr" src="{{asset('images/perkakas.png')}}" alt="foto">
-      <h3>Perkakas</h3>
+      <img class="gmbr" src="{{asset('images/'.$k['gambar'])}}" alt="foto">
+      <h3>{{ $k['nama'] }}</h3>
     </div>
+    @endforeach
   </div>
   
   

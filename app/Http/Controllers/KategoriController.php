@@ -10,9 +10,11 @@ class KategoriController extends Controller
     {
         $kategori = [
             ['nama' => 'Perkakas', 'gambar' => 'perkakas.png'],
-            ['nama' => 'Oli', 'gambar' => 'oli.png'],
-            ['nama' => 'Ban', 'gambar' => 'ban.png'],
-            ['nama' => 'Aki', 'gambar' => 'aki.png']
+            ['nama' => 'Cover Knalpot', 'gambar' => 'knalpot.png'],
+            ['nama' => 'Suku Cadang', 'gambar' => 'sukucadang.png'],
+            ['nama' => 'Oli & Pelumas', 'gambar' => 'oli.png'],
+            ['nama' => 'Filter Udara', 'gambar' => 'filterudara.png'],
+            ['nama' => 'Kampas Rem', 'gambar' => 'kampasrem.png'],
         ];
 
         return view('kategoritoko', compact('kategori'));

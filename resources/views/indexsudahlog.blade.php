@@ -14,7 +14,7 @@
         <div class="nav-container">
             <img src="{{asset('images/logoweb.png')}}" class="logo" alt="foto">
             <a href="{{route('indexsudahlog')}}" class="halutama">Home</a>
-            <a href="{{route('kategori-toko')}}" target="" class="kategori">Category</a>
+            <a href="{{route('kategoritoko')}}" target="" class="kategori">Category</a>
             <a href="{{route('hubungi1')}}" target="" class="hubungi">Contact</a>
 
             <div class="action">
