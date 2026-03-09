@@ -7,6 +7,7 @@
     src: url(../fonts/PrimaveraSans-Regular.ttf)format('truetype');
 }
 .ltr {
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -107,4 +108,5 @@ footer {
     text-align: center;
     padding: 15px 0;
     font-family: 'prima';
+    margin-top: 19%;
 }
