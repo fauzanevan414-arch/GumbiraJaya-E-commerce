@@ -30,5 +30,5 @@ Route::get('/daftar2', function(){
 })->name('daftar2');
 
 Route::get('/kategori-toko', function(){
-    return view('kategori toko');
+    return view('kategoritoko');
 })->name('kategori-toko');
