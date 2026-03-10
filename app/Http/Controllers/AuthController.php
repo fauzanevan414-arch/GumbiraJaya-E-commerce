@@ -40,4 +40,9 @@ class AuthController extends Controller
         ]);
         return redirect('/indexsudahlog');
     }
+    
+    public function profile()
+    {
+    return view('profile');
+    }
 }

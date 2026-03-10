@@ -26,7 +26,7 @@
                 </div>
             </div>
             <img class="keranjang" src="{{asset('images/shopping-cart_1055226.png')}}" alt="foto" width="50" height="50">
-            <img class="profile" src="{{asset('images/profile.png')}}" width="55" height="55">
+            <a class="profile" href="{{route('profile')}}"><img src="{{asset('images/profile.png')}}" width="55" height="55"></a>
         </div>
     </div>
 

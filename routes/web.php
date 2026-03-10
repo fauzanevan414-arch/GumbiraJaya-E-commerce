@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 Route::post('/daftar', [AuthController::class, 'daftar'])->name('daftar');
 Route::post('/tampilan_login', [AuthController::class, 'login']);
 Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kategoritoko');
+Route::get('/profile', [AuthController::class, 'profile']);
 
 Route::get('/', function(){
     return view('index');
@@ -31,3 +32,7 @@ Route::get('/hubungi1', function(){
 Route::get('/daftar', function(){
     return view('daftar');
 })->name('daftar');
+
+Route::get('/profile', function(){
+    return view('profile');
+})->name('profile');
