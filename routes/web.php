@@ -8,6 +8,7 @@ Route::post('/daftar', [AuthController::class, 'daftar'])->name('daftar');
 Route::post('/tampilan_login', [AuthController::class, 'login']);
 Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kategoritoko');
 Route::get('/profile', [AuthController::class, 'profile']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/', function(){
     return view('index');

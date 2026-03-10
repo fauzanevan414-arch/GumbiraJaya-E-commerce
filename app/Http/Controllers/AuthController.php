@@ -40,9 +40,15 @@ class AuthController extends Controller
         ]);
         return redirect('/indexsudahlog');
     }
-    
+
     public function profile()
     {
     return view('profile');
+    }
+
+    public function logout(Request $request)
+    {
+    session()->flush(); // Hapus semua session
+    return redirect('/tampilan_login');
     }
 }

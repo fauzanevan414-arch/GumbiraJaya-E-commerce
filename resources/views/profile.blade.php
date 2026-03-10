@@ -24,7 +24,10 @@
 
         <div class="logout">
             <a class="back" href="/indexsudahlog">← Kembali</a>
-            <a class="back" href="/indexsudahlog"> Logout</a>
+            <form action="/logout" method="POST">
+                @csrf
+                <button class="back" type="submit">logout</button>
+            </form>
         </div>
 
     </div>
