@@ -212,6 +212,11 @@ button:hover {
     filter: invert(100%);
     cursor: pointer;
 }
+.profile{
+    filter: invert(100%);
+    cursor: pointer;
+    margin-left: 30%;
+}
 
 .gmr {
     border-radius: 5px;
