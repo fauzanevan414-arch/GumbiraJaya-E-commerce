@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-        public function index()
+        public function category()
     {
         $kategori = [
             ['nama' => 'Perkakas', 'gambar' => 'perkakas.png'],

@@ -14,8 +14,12 @@
     <div class="hellotxt">Hello,<br>Welcome<span class="txtkcl"><br>Log In to-Continue</span></div>
     <div class="db">
         <center>
+            @if(session('error'))
+            <p style="color:red;">{{ session('error') }}</p>
+            @endif
             <table class="table">
-                <form action="proses_login.php" method="post">
+                <form action="{{route('tampilan_login')}}" method="post">
+                    @csrf
                     <tr>
                         <td>
                             <h1 style="text-align: center;">Login Account<br></h1>
@@ -33,7 +37,7 @@
                     <tr>
                         <td style="text-align: center;"><br><button class="btnlogin">Login</button></td>
                     <tr>
-                        <td class="belumpunyaakun">Don't have an account yet?<span><a href="{{asset('daftar2')}}" class="belumdaftar"> Register</a></span></td>
+                        <td class="belumpunyaakun">Don't have an account yet?<span><a href="{{asset('daftar')}}" class="belumdaftar"> Register</a></span></td>
                     </tr>
                     </tr>
                 </form>
