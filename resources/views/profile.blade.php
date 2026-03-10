@@ -23,10 +23,10 @@
         <p><b>Email:</b> {{ session('email') }}</p>
 
         <div class="logout">
-            <a class="back" href="/indexsudahlog">← Kembali</a>
+            <a class="back" href="/indexsudahlog">Kembali</a>
             <form action="/logout" method="POST">
                 @csrf
-                <button class="back" type="submit">logout</button>
+                <button class="back" type="submit">Logout</button>
             </form>
         </div>
 
