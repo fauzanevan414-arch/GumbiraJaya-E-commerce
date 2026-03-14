@@ -34,6 +34,9 @@
     <h1>Main page</h1>
 
     <div class="ltr">
+        <div class="itembarang">
+
+        </div>
     </div>
 
     <footer>

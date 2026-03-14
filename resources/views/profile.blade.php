@@ -20,10 +20,10 @@
         <h1>HELLO!</h1>
         <img src="{{asset('images/download.jpg')}}" width="100" height="100">
         <h3>I'm <b>{{session('nama_user')}}</b></h3>
-        <p><b>Email:</b> {{ session('email') }}</p>
+        <p>Email: {{ session('email') }}</p>
 
         <div class="logout">
-            <a class="back" href="/indexsudahlog">Kembali</a>
+            <a class="back" href="/indexsudahlog">Back</a>
             <form action="/logout" method="POST">
                 @csrf
                 <button class="back" type="submit">Logout</button>
