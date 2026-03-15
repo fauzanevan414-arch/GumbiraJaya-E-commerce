@@ -10,7 +10,7 @@ class KategoriController extends Controller
     {
         $kategori = [
             ['nama' => 'Perkakas', 'gambar' => 'perkakas.png'],
-            ['nama' => 'Cover Knalpot', 'gambar' => 'knalpot.png'],
+            ['nama' => 'Cover', 'gambar' => 'knalpot.png'],
             ['nama' => 'Suku Cadang', 'gambar' => 'sukucadang.png'],
             ['nama' => 'Oli & Pelumas', 'gambar' => 'oli.png'],
             ['nama' => 'Filter Udara', 'gambar' => 'filterudara.png'],
