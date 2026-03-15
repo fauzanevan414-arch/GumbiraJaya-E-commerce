@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ProdukController;
 
+Route::get('/produk', [ProdukController::class, 'index','indexsudahlog']);
 Route::post('/daftar', [AuthController::class, 'daftar'])->name('daftar');
 Route::post('/tampilan_login', [AuthController::class, 'login']);
 Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kategoritoko');
