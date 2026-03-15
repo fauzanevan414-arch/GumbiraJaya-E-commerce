@@ -5,16 +5,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 
-Route::get('/produk', [ProdukController::class, 'index','indexsudahlog']);
+Route::get('/', [ProdukController::class, 'index'])->name('index');
+Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('/produk-login', [ProdukController::class, 'indexsudahlog'])->middleware('auth');
 Route::post('/daftar', [AuthController::class, 'daftar'])->name('daftar');
 Route::post('/tampilan_login', [AuthController::class, 'login']);
 Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kategoritoko');
-Route::get('/profile', [AuthController::class, 'profile']);
+Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout']);
-
-Route::get('/', function(){
-    return view('index');
-})->name('index');
 
 Route::get('/indexsudahlog', function(){
     return view('indexsudahlog');
@@ -35,7 +33,3 @@ Route::get('/hubungi1', function(){
 Route::get('/daftar', function(){
     return view('daftar');
 })->name('daftar');
-
-Route::get('/profile', function(){
-    return view('profile');
-})->name('profile');
