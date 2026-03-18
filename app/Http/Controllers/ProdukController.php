@@ -10,4 +10,9 @@ class ProdukController extends Controller
     $produk = Produk::all(); // mengambil semua produk dari database
     return view('index', compact('produk'));
     }
+
+    public function indexsudahlog(){
+    $produk = Produk::all(); // mengambil semua produk dari database
+    return view('indexsudahlog', compact('produk'));
+    }
 }

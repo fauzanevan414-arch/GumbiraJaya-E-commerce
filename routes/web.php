@@ -7,16 +7,12 @@ use App\Http\Controllers\ProdukController;
 
 Route::get('/', [ProdukController::class, 'index'])->name('index');
 Route::get('/produk', [ProdukController::class, 'index']);
-Route::get('/produk-login', [ProdukController::class, 'indexsudahlog'])->middleware('auth');
+Route::get('/indexsudahlog', [ProdukController::class, 'indexsudahlog'])->name('indexsudahlog');
 Route::post('/daftar', [AuthController::class, 'daftar'])->name('daftar');
 Route::post('/tampilan_login', [AuthController::class, 'login']);
 Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kategoritoko');
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout']);
-
-Route::get('/indexsudahlog', function(){
-    return view('indexsudahlog');
-})->name('indexsudahlog');
 
 Route::get('/tampilan_login', function() {
     return view('tampilan_login');

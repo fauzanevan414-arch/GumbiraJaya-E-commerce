@@ -33,7 +33,15 @@
     <h1>Main page</h1>
 
     <div class="ltr">
-
+        @foreach ($produk as $item)
+        <div class="itembarang">
+            <img src="{{asset('images/'.$item->gambar_produk)}}" class="gambar-produk">
+        <h3>{{$item->nama_produk}}</h3>
+        <p class="stok">({{'Stok: '.$item->stok_produk}})</p>
+        <p class="harga">{{'Rp. '.$item->harga_produk}}</p>
+        <a href="{{route('tampilan_login')}}"><button class="btnbeli">Beli</button></a>
+        </div>
+        @endforeach
     </div>
 
     <footer>
