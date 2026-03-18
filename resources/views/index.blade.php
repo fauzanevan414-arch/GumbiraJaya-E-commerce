@@ -36,7 +36,7 @@
     <div class="ltr">
     @foreach ($produk as $item)
         <div class="itembarang">
-            <img src="{{asset('images/'.$item->gambar_produk)}}" alt="foto" width="270" height="200">
+            <img src="{{asset('images/'.$item->gambar_produk)}}" alt="foto" width="275" height="200" class="gambar-produk">
         <h3>{{$item->nama_produk}}</h3>
         <p class="stok">({{'Stok: '.$item->stok_produk}})</p>
         <p class="harga">{{'Rp. '.$item->harga_produk}}</p>

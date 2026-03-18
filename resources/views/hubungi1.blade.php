@@ -22,7 +22,7 @@
 
         <div class="infokontak">
             <h2>Contact</h2>
-            <p>E-mail: <a href="mailto:fauzanevanfebrian@gmail.com">fauzanevanfebrian@gmail.com</a></p>
+            <p>E-mail: <a href="mailto:fauzanevan414@gmail.com">fauzanevan414@gmail.com</a></p>
             <p>Instagram: <a href="https://instagram.com/uzanepan" target="_blank">@uzanepan</a></p>
             <p>WhatsApp: <a href="https://wa.me/628889592318" target="_blank">+62 888 9592 318</a></p>
             <p>Address: Jl. Sirnagalih No.15, Bandung</p>
