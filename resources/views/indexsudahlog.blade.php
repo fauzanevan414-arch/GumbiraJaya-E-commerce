@@ -20,7 +20,7 @@
             <div class="action">
                 <div class="search">
                     <form action="indexsudahlog.php" method="get">
-                        <input type="text" name="keyword" placeholder="Cari...">
+                        <input type="text" name="keyword" placeholder="Search...">
                         <button><img src="{{asset('images/search_3856329.png')}}" width="15" height="15"></button>
                     </form>
                 </div>
