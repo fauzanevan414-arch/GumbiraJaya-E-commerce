@@ -13,6 +13,7 @@ Route::post('/tampilan_login', [AuthController::class, 'login']);
 Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kategoritoko');
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
 
 Route::get('/tampilan_login', function() {
     return view('tampilan_login');

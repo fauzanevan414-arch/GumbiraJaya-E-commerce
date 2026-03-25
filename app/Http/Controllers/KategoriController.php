@@ -1,22 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
         public function category()
     {
-        $kategori = [
-            ['nama' => 'Perkakas', 'gambar' => 'perkakas.png'],
-            ['nama' => 'Cover', 'gambar' => 'knalpot.png'],
-            ['nama' => 'Suku Cadang', 'gambar' => 'sukucadang.png'],
-            ['nama' => 'Oli & Pelumas', 'gambar' => 'oli.png'],
-            ['nama' => 'Filter Udara', 'gambar' => 'filterudara.png'],
-            ['nama' => 'Kampas Rem', 'gambar' => 'kampasrem.png'],
-        ];
+        $kategori = Kategori::all();
 
         return view('kategoritoko', compact('kategori'));
     }
+
+    public function show($id){
+    $produk = Produk::where('id_kategori', $id)->get();
+    return view('indexsudahlog', compact('produk'));
+    }
+    
 }

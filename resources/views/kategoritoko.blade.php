@@ -17,9 +17,11 @@
   </div>
   <div class="ltr">
     @foreach($kategori as $k)
+    <a href="{{ route('kategori.show', $k->id_kategori) }}">
     <div class="buttonkategori">
-      <img class="gmbr" src="{{asset('images/'.$k['gambar'])}}" alt="foto">
-      <h3>{{ $k['nama'] }}</h3>
+      <img class="gmbr" src="{{asset('images/'.$k->gambar)}}" alt="foto">
+      <h3>{{ $k->nama }}</h3>
+      </a>
     </div>
     @endforeach
   </div>
