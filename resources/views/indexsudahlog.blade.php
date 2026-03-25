@@ -34,7 +34,6 @@
     @if($produk->isEmpty())
     <div class="kosong">
     <h2>Item not found</h2>
-    <img src="{{asset('images/notfound.png')}}" alt="foto" width="70" height="70">
     </div>
     @else
         @foreach ($produk as $item)
