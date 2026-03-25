@@ -20,7 +20,7 @@
     <a href="{{ route('kategori.show', $k->id_kategori) }}">
     <div class="buttonkategori">
       <img class="gmbr" src="{{asset('images/'.$k->gambar)}}" alt="foto">
-      <h3>{{ $k->nama }}</h3>
+      <h3>{{ $k->nama_kategori }}</h3>
       </a>
     </div>
     @endforeach

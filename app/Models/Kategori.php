@@ -11,7 +11,7 @@ class Kategori extends Model
     protected $primaryKey = 'id_kategori'; // karena kamu pakai id_kategori
 
     protected $fillable = [
-        'nama',
+        'nama_kategori',
         'gambar'
     ];
 }

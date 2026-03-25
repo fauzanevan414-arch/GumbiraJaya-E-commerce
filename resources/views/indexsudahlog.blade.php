@@ -29,9 +29,7 @@
             <a class="profile" href="{{route('profile')}}"><img src="{{asset('images/profile.png')}}" width="55" height="55"></a>
         </div>
     </div>
-
-    <h1>Main page</h1>
-
+    
     <div class="ltr">
         @foreach ($produk as $item)
         <div class="itembarang">

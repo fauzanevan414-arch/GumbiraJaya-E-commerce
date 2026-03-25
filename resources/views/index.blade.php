@@ -31,8 +31,6 @@
         </div>
     </div>
 
-    <h1>Main page</h1>
-
     <div class="ltr">
     @foreach ($produk as $item)
         <div class="itembarang">
