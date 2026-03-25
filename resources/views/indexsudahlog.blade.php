@@ -29,8 +29,14 @@
             <a class="profile" href="{{route('profile')}}"><img src="{{asset('images/profile.png')}}" width="55" height="55"></a>
         </div>
     </div>
-    
+
     <div class="ltr">
+    @if($produk->isEmpty())
+    <div class="kosong">
+    <h2>Item not found</h2>
+    <img src="{{asset('images/notfound.png')}}" alt="foto" width="70" height="70">
+    </div>
+    @else
         @foreach ($produk as $item)
         <div class="itembarang">
             <img src="{{asset('images/'.$item->gambar_produk)}}" alt="foto" width="275" height="200"  class="gambar-produk">
@@ -40,6 +46,7 @@
         <a href="{{route('tampilan_login')}}"><button class="btnbeli">Beli</button></a>
         </div>
         @endforeach
+    @endif
     </div>
 
     <footer>

@@ -34,7 +34,8 @@
     <div class="ltr">
         @if($produk->isEmpty())
     <div class="kosong">
-        <h2>Barang tidak ditemukan</h2>
+        <h2>Item not found</h2>
+        <img src="{{asset('images/notfound.png')}}" alt="foto" width="50" height="50">
     </div>
     @else
     @foreach ($produk as $item)
