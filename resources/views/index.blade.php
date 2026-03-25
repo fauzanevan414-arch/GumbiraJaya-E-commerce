@@ -20,7 +20,7 @@
             <div class="action">
                 <div class="search">
                     <form action="{{route('produk.search')}}" method="get">
-                        <input type="text" name="keyword" placeholder="Search...">
+                        <input type="text" name="q" placeholder="Search...">
                         <button><img src="{{asset('images/search_3856329.png')}}" width="15" height="15"></button>
                     </form>
                 </div>
