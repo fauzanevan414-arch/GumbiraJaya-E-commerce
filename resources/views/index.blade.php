@@ -19,8 +19,8 @@
 
             <div class="action">
                 <div class="search">
-                    <form action="{{route('produk.search')}}" method="get">
-                        <input type="text" name="q" placeholder="Search...">
+                    <form action="{{ route('index') }}" method="get">
+                        <input type="text" name="q" placeholder="Search..." value="{{ request('q') }}">
                         <button><img src="{{asset('images/search_3856329.png')}}" width="15" height="15"></button>
                     </form>
                 </div>
