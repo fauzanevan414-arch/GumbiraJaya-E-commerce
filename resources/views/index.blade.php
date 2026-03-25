@@ -32,6 +32,11 @@
     </div>
 
     <div class="ltr">
+        @if($produk->isEmpty())
+    <div class="kosong">
+        <h2>Barang tidak ditemukan</h2>
+    </div>
+    @else
     @foreach ($produk as $item)
         <div class="itembarang">
             <img src="{{asset('images/'.$item->gambar_produk)}}" alt="foto" width="275" height="200" class="gambar-produk">
@@ -41,6 +46,7 @@
         <a href="{{route('tampilan_login')}}"><button class="btnbeli">Beli</button></a>
         </div>
         @endforeach
+        @endif
     </div>
 
     <footer>

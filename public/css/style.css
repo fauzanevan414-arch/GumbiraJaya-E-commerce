@@ -39,6 +39,16 @@ body {
     background-position: center;
     background-color: #F5F5F5;
 }
+.kosong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    text-align: center;
+    font-family: 'montserrat';
+    color: #555;
+    margin-bottom: 80px;
+}
 .gambar-produk{
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

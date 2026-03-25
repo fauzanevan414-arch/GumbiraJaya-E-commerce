@@ -49,6 +49,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
     session()->flush(); // Hapus semua session
-    return redirect('/tampilan_login');
+    return redirect('');
     }
 }
