@@ -15,4 +15,13 @@ class ProdukController extends Controller
     $produk = Produk::all(); // mengambil semua produk dari database
     return view('indexsudahlog', compact('produk'));
     }
+
+    public function search(Request $request){
+        $keyword = $request->q;
+
+        $produk = Produk::where('nama_produk', 'like', '%' . '$keyword' . '%')
+        ->get();
+
+        return view('index', compact('produk'));
+    }
 }
