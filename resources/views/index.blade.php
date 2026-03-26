@@ -27,6 +27,7 @@
             </div>
 
             <a href="{{route('tampilan_login')}}"><img class="keranjang" src="{{asset('images/shopping-cart_1055226.png')}}" alt="foto" width="50" height="50"></a>
+            <a href="{{route('tampilan_login')}}" class="pesanan">Pesanan</a>
             <a href="{{ route('tampilan_login') }}" class="login">Login</a>
         </div>
     </div>

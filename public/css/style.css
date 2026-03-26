@@ -39,6 +39,7 @@ body {
     background-position: center;
     background-color: #F5F5F5;
 }
+
 .kosong {
     display: flex;
     justify-content: center;
@@ -50,9 +51,28 @@ body {
     font-size: 30px;
     margin-bottom: 80px;
 }
-.gambar-produk{
+
+.gambar-produk {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
+
+.pesanan {
+    padding: 20px;
+    margin-left: 4%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.pesanan:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+
 h1 {
     font-family: 'montserrat';
     color: rgb(0, 0, 0);
@@ -139,7 +159,7 @@ h3 {
 
 .login {
     padding: 10px;
-    margin-left: 25%;
+    margin-left: 5%;
     font-family: 'montserrat';
     color: white;
     font-size: 20px;
@@ -181,7 +201,7 @@ h3 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .itembarang:hover {
