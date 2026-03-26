@@ -14,8 +14,8 @@ Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kate
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
-Route::get('/keranjang', function () {
-    return view('keranjang'); })->name('keranjang');
+Route::post('/keranjang/tambah', [ProdukController::class, 'tambahKeranjang'])->middleware('auth');
+Route::post('/pesanan/tambah', [ProdukController::class, 'tambahPesanan'])->middleware('auth');
 
 Route::get('/tampilan_login', function () {
     return view('tampilan_login');

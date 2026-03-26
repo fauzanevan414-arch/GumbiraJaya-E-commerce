@@ -44,66 +44,110 @@
         <p class="stok">({{'Stok: '.$item->stok_produk}})</p>
         <p class="harga">{{'Rp. '.$item->harga_produk}}</p>
         <button class="btnbeli"
-        onclick="openModal('{{ $item->nama_produk }}', {{ $item->harga_produk }})">Beli</button>
+        onclick="onclick=openModal({{ $item->id_produk }}, '{{ $item->nama_produk }}', {{ $item->harga_produk }})">Beli</button>
         </div>
         @endforeach
     @endif
     </div>
 
     <div id="modal" class="modal">
-    <div class="modal-content">
-        <h3 id="namaProduk"></h3>
-        <p id="hargaProduk"></p>
+        <div class="modal-content">
+            <h3 id="namaProduk"></h3>
+            <p id="hargaSatuan"></p>
 
-        <button onclick="beliSekarang()">Beli Sekarang</button>
-        <button onclick="tambahKeranjang()">Tambah ke Keranjang</button>
+            <div>
+                <button onclick="kurang()">-</button>
+                <span id="qty">1</span>
+                <button onclick="tambah()">+</button>
+            </div>
 
-        <br><br>
-        <button onclick="closeModal()">Tutup</button>
+            <p>Total: <span id="totalHarga"></span></p>
+
+            <button onclick="beliSekarang()">Beli</button>
+            <button onclick="masukKeranjang()">Masukkan ke Keranjang</button>
+            <button onclick="closeModal()">Tutup</button>
+        </div>
     </div>
-</div>
 
-<script>
-let produkDipilih = {};
 
-function openModal(nama, harga) {
-    document.getElementById('modal').style.display = 'block';
-    document.getElementById('namaProduk').innerText = nama;
-    document.getElementById('hargaProduk').innerText = 'Rp ' + harga;
-
-    produkDipilih = { nama, harga };
-}
-
-function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-}
-
-function beliSekarang() {
-    let pesan = `Halo, saya ingin membeli:\n${produkDipilih.nama}\nHarga: Rp ${produkDipilih.harga}\n\nAlamat saya: ...`;
-
-    let url = `https://wa.me/628xxxxxxxxxx?text=${encodeURIComponent(pesan)}`;
-    window.open(url, '_blank');
-}
-
-function tambahKeranjang() {
-    let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
-
-    keranjang.push({
-        nama: produkDipilih.nama,
-        harga: produkDipilih.harga,
-        qty: 1
-    });
-
-    localStorage.setItem('keranjang', JSON.stringify(keranjang));
-
-    alert('Ditambahkan ke keranjang!');
-    closeModal();
-}
-</script>
     <footer>
         <p>&copy; 2026 GumbiraJaya | All Rights Reserved</p>
     </footer>
 
 </body>
+<script>
+let produk = {};
+let qty = 1;
+
+function openModal(id, nama, harga){
+    produk = {id, nama, harga};
+    qty = 1;
+
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('namaProduk').innerText = nama;
+    document.getElementById('hargaSatuan').innerText = 'Rp ' + harga;
+
+    updateTotal();
+}
+
+function closeModal(){
+    document.getElementById('modal').style.display = 'none';
+}
+
+function tambah(){
+    qty++;
+    updateTotal();
+}
+
+function kurang(){
+    if(qty > 1){
+        qty--;
+        updateTotal();
+    }
+}
+
+function updateTotal(){
+    document.getElementById('qty').innerText = qty;
+    document.getElementById('totalHarga').innerText = 'Rp ' + (produk.harga * qty);
+}
+
+function beliSekarang(){
+    let pesan = `Halo, saya ingin membeli:\n${produk.nama}\nJumlah: ${qty}\nTotal: Rp ${produk.harga * qty}\n\nAlamat: ...`;
+
+    let url = `https://wa.me/628xxxxxxxxxx?text=${encodeURIComponent(pesan)}`;
+
+    // kirim ke database pesanan
+    fetch('/pesanan/tambah', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            produk_id: produk.id,
+            qty: qty
+        })
+    });
+
+    window.open(url, '_blank');
+}
+
+function masukKeranjang(){
+    fetch('/keranjang/tambah', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            produk_id: produk.id,
+            qty: qty
+        })
+    }).then(() => {
+        alert('Masuk keranjang!');
+        closeModal();
+    });
+}
+</script>
 
 </html>
