@@ -14,19 +14,21 @@ Route::get('/kategoritoko', [KategoriController::class, 'category'])->name('kate
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
+Route::get('/keranjang', function () {
+    return view('keranjang'); })->name('keranjang');
 
-Route::get('/tampilan_login', function() {
+Route::get('/tampilan_login', function () {
     return view('tampilan_login');
 })->name('tampilan_login');
 
-Route::get('/hubungi', function(){
+Route::get('/hubungi', function () {
     return view('hubungi');
 })->name('hubungi');
 
-Route::get('/hubungi1', function(){
+Route::get('/hubungi1', function () {
     return view('hubungi1');
 })->name('hubungi1');
 
-Route::get('/daftar', function(){
+Route::get('/daftar', function () {
     return view('daftar');
 })->name('daftar');
