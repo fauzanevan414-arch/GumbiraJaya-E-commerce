@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    {{ auth()->check() ? 'LOGIN' : 'BELUM LOGIN' }}
     <div id="db">
         <div class="nav-container">
             <img src="{{asset('images/logoweb.png')}}" class="logo" alt="foto">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Keranjang;
 use App\Models\Pesanan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -38,7 +39,7 @@ class ProdukController extends Controller
 
     public function tambahKeranjang(Request $request)
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         $item = Keranjang::where('user_id', $user->id)
             ->where('produk_id', $request->produk_id)
@@ -61,11 +62,20 @@ class ProdukController extends Controller
     public function tambahPesanan(Request $request)
 {
     Pesanan::create([
-        'user_id' => auth()->id(),
+        'user_id' => Auth::id(),
         'produk_id' => $request->produk_id,
         'qty' => $request->qty
     ]);
 
     return response()->json(['success' => true]);
+}
+
+public function keranjang()
+{
+    $keranjang = \App\Models\Keranjang::where('user_id', Auth::id())
+        ->with('produk')
+        ->get();
+
+    return view('keranjang', compact('keranjang'));
 }
 }

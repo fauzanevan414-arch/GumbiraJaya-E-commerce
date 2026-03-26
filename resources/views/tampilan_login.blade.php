@@ -18,7 +18,7 @@
             <p style="color:red;">{{ session('error') }}</p>
             @endif
             <table class="table">
-                <form action="{{route('tampilan_login')}}" method="post">
+                <form action="/login" method="post">
                     @csrf
                     <tr>
                         <td>

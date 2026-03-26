@@ -14,7 +14,7 @@
         <div class="nav-container">
             <img src="{{ asset('images/logoweb.png') }}" class="logo" alt="foto">
             <a href="{{ route('index') }}" class="halutama">Home</a>
-            <a href="{{ route('tampilan_login') }}" target="" class="kategori">Category</a>
+            <a href="/login" target="" class="kategori">Category</a>
             <a href="{{ route('hubungi') }}" target="" class="hubungi">Contact</a>
 
             <div class="action">
@@ -26,9 +26,9 @@
                 </div>
             </div>
 
-            <a href="{{route('tampilan_login')}}"><img class="keranjang" src="{{asset('images/shopping-cart_1055226.png')}}" alt="foto" width="50" height="50"></a>
-            <a href="{{route('tampilan_login')}}" class="pesanan">Pesanan</a>
-            <a href="{{ route('tampilan_login') }}" class="login">Login</a>
+            <a href="/login"><img class="keranjang" src="{{asset('images/shopping-cart_1055226.png')}}" alt="foto" width="50" height="50"></a>
+            <a href="/login" class="pesanan">Pesanan</a>
+            <a href="/login" class="login">Login</a>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
         <h3>{{$item->nama_produk}}</h3>
         <p class="stok">({{'Stok: '.$item->stok_produk}})</p>
         <p class="harga">{{'Rp. '.$item->harga_produk}}</p>
-        <a href="{{route('tampilan_login')}}"><button class="btnbeli">Beli</button></a>
+        <a href="/login"><button class="btnbeli">Beli</button></a>
         </div>
         @endforeach
         @endif
