@@ -43,8 +43,7 @@
         <h3>{{$item->nama_produk}}</h3>
         <p class="stok">({{'Stok: '.$item->stok_produk}})</p>
         <p class="harga">{{'Rp. '.$item->harga_produk}}</p>
-        <button class="btnbeli"
-        onclick="onclick=openModal({{ $item->id_produk }}, '{{ $item->nama_produk }}', {{ $item->harga_produk }})">Beli</button>
+        <button class="btnbeli" onclick="openModal({{ $item->id_produk }}, '{{ $item->nama_produk }}', {{ $item->harga_produk }})">Beli</button>
         </div>
         @endforeach
     @endif
@@ -75,6 +74,7 @@
     </footer>
 
 </body>
+
 <script>
 let produk = {};
 let qty = 1;
@@ -112,9 +112,9 @@ function updateTotal(){
 }
 
 function beliSekarang(){
-    let pesan = `Halo, saya ingin membeli:\n${produk.nama}\nJumlah: ${qty}\nTotal: Rp ${produk.harga * qty}\n\nAlamat: ...`;
+    let pesan = `Halo, saya ingin membeli:\n${produk.nama}\nJumlah: ${qty}\nSistem (diantar/ambil ke toko): ...\nTotal: Rp ${produk.harga * qty}\n\nAlamat: ...`;
 
-    let url = `https://wa.me/628xxxxxxxxxx?text=${encodeURIComponent(pesan)}`;
+    let url = `https://wa.me/628889592318?text=${encodeURIComponent(pesan)}`;
 
     // kirim ke database pesanan
     fetch('/pesanan/tambah', {
@@ -133,6 +133,7 @@ function beliSekarang(){
 }
 
 function masukKeranjang(){
+    
     fetch('/keranjang/tambah', {
         method: 'POST',
         headers: {
@@ -143,9 +144,15 @@ function masukKeranjang(){
             produk_id: produk.id,
             qty: qty
         })
-    }).then(() => {
-        alert('Masuk keranjang!');
-        closeModal();
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            alert('Masuk keranjang!');
+            closeModal();
+        } else {
+            alert(data.error);
+        }
     });
 }
 </script>

@@ -37,25 +37,25 @@ class ProdukController extends Controller
 
     public function tambahKeranjang(Request $request)
     {
-        // 🔥 CEK LOGIN
-        if (!session('user_id')) {
+        // CEK LOGIN
+        if (!session('id_user')) {
             return response()->json(['error' => 'Harus login dulu']);
         }
 
-        $user_id = session('user_id');
+        $user_id = session('id_user');
 
-        $item = Keranjang::where('user_id', $user_id)
-            ->where('produk_id', $request->produk_id)
+        $item = Keranjang::where('id_user', $user_id)
+            ->where('id_produk', $request->produk_id)
             ->first();
 
         if ($item) {
-            $item->qty += $request->qty;
+            $item->jumlah += $request->jumlah;
             $item->save();
         } else {
             Keranjang::create([
-                'user_id' => $user_id,
-                'produk_id' => $request->produk_id,
-                'qty' => $request->qty
+                'id_user' => $user_id,
+                'id_produk' => $request->produk_id,
+                'jumlah' => $request->jumlah
             ]);
         }
 
@@ -64,15 +64,15 @@ class ProdukController extends Controller
 
     public function tambahPesanan(Request $request)
     {
-        // 🔥 CEK LOGIN
-        if (!session('user_id')) {
+        // CEK LOGIN
+        if (!session('id_user')) {
             return response()->json(['error' => 'Harus login dulu']);
         }
 
         Pesanan::create([
-            'user_id' => session('user_id'),
-            'produk_id' => $request->produk_id,
-            'qty' => $request->qty
+            'id_user' => session('id_user'),
+            'id_produk' => $request->produk_id,
+            'jumlah' => $request->jumlah
         ]);
 
         return response()->json(['success' => true]);
@@ -80,12 +80,12 @@ class ProdukController extends Controller
 
     public function keranjang()
     {
-        // 🔥 CEK LOGIN
-        if (!session('user_id')) {
+        // CEK LOGIN
+        if (!session('id_user')) {
             return redirect('/login');
         }
 
-        $keranjang = Keranjang::where('user_id', session('user_id'))
+        $keranjang = Keranjang::where('id_user', session('id_user'))
             ->with('produk')
             ->get();
 

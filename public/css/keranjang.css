@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf)format('truetype');
+}
+
+@font-face {
+    font-family: 'prima';
+    src: url(../fonts/PrimaveraSans-Regular.ttf)format('truetype');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 80%;
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    background-color: #F5F5F5;
+    padding-top: 50px;
+}
+
+#dasb {
+    backdrop-filter: blur(5px);
+    background: linear-gradient(180deg, #f39c12, #f1c40f);
+    padding: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    height: 85px;
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    padding-left: 5px;
+    margin-top: -1%;
+    width: 200px;
+}
+
+.halutama {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 4%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.halutama:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+
+.hubungi {
+    padding: 20px;
+    margin-left: 1%;
+    margin-right: 5%;
+    font-family: 'montserrat';
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.hubungi:hover {
+    background: #f39c12;
+    padding: 35px 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+b {
+    color: #F4A300;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    font-family: 'montserrat';
+    background-color: #F4A300;
+    color: white;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.ltr {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 2%;
+    padding: 40px 20px;
+}
+
+
+h3 {
+    font-size: 30px;
+}
+
+h2{
+    font-family: 'prima';
+    padding-left: 100%;
+    color: white;
+}
