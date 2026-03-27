@@ -19,13 +19,8 @@
     <div class="propil">
         <h1>HELLO!</h1>
         <img src="{{asset('images/download.jpg')}}" width="100" height="100">
-@if(Auth::check())
-    <h3>I'm <b>{{ auth()->user()->nama_user }}</b></h3>
-    <p>Email: {{ auth()->user()->email }}</p>
-@else
-    <p>Belum login</p>
-@endif
-
+    <h3>I'm <b>{{ session('nama_user') }}</b></h3>
+    <p>Email: {{ session('email') }}</p>
         <div class="logout">
             <a class="back" href="/indexsudahlog">Back</a>
             <form action="/logout" method="POST">

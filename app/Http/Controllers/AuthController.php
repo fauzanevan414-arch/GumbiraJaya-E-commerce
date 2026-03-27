@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -25,24 +24,23 @@ class AuthController extends Controller
         return redirect('/indexsudahlog');
     }
 
-    public function login(Request $request){
-    // validasi
-    if (!$request->email || !$request->password) {
-        return back()->with('error', 'Email dan Password tidak boleh kosong.');
+public function login(Request $request)
+{
+    $user = DB::table('daftar_user')
+        ->where('email', $request->email)
+        ->first();
+
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        return back()->with('error', 'Email atau Password salah');
     }
 
-    // proses login
-    if (Auth::attempt([
-        'email' => $request->email,
-        'password' => $request->password
-    ])) {
-        // ini penting biar session aman
-        $request->session()->regenerate();
+    session([
+        'id_user' => $user->id_user,
+        'nama_user' => $user->nama_user,
+        'email' => $user->email,
+    ]);
 
-        return redirect()->route('indexsudahlog');
-    }
-
-    return back()->with('error', 'Email atau Password salah.');
+    return redirect('/indexsudahlog');
 }
 
     public function profile()
@@ -50,9 +48,9 @@ class AuthController extends Controller
         return view('profile');
     }
 
-    public function logout(Request $request)
-    {
-        session()->flush(); // Hapus semua session
-        return redirect('');
-    }
+public function logout()
+{
+    session()->flush();
+    return redirect('');
+}
 }

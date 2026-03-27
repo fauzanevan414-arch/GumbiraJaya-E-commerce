@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    {{ auth()->check() ? 'LOGIN' : 'BELUM LOGIN' }}
     <div id="db">
         <div class="nav-container">
             <img src="{{asset('images/logoweb.png')}}" class="logo" alt="foto">
@@ -84,7 +83,7 @@ function openModal(id, nama, harga){
     produk = {id, nama, harga};
     qty = 1;
 
-    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal').style.display = 'flex';
     document.getElementById('namaProduk').innerText = nama;
     document.getElementById('hargaSatuan').innerText = 'Rp ' + harga;
 
