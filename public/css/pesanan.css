@@ -1,0 +1,159 @@
+        @font-face {
+            font-family: 'prima';
+            src: url(../fonts/PrimaveraSans-Regular.ttf)format('truetype');
+        }
+
+        @font-face {
+            font-family: 'montserrat';
+            src: url(../fonts/Montserrat-VariableFont_wght.ttf)format('truetype');
+        }
+
+        html,
+        body {
+            font-family: 'prima';
+            background: #F5F5F5;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px;
+        }
+
+        button {
+            background: #ffa515;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.6s ease;
+        }
+
+        button:hover {
+            background: #e69006;
+        }
+
+        #dasb {
+            backdrop-filter: blur(5px);
+            background: linear-gradient(180deg, #f39c12, #f1c40f);
+            padding: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            height: 85px;
+            display: flex;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            padding-left: 5px;
+            margin-top: -1%;
+            width: 200px;
+        }
+
+        .hubungi {
+            padding: 20px;
+            margin-left: 1%;
+            margin-right: 5%;
+            font-family: 'montserrat';
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.1s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .hubungi:hover {
+            background: #f39c12;
+            padding: 35px 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .halutama {
+            padding: 20px;
+            margin-left: 1%;
+            margin-right: 4%;
+            font-family: 'montserrat';
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.1s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .halutama:hover {
+            background: #f39c12;
+            padding: 35px 20px;
+        }
+
+        footer {
+            background: linear-gradient(180deg, #f39c12, #f1c40f);
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-family: 'prima';
+        }
+
+        .pesanan-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 40px;
+            flex: 1;
+            align-items: flex-start;
+            /* ← kartu tidak melebar */
+            width: fit-content;
+            /* ← container ikut konten */
+        }
+
+
+        .pesanan-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            width: 100%;
+            /* ← semua kartu sama panjang */
+        }
+
+        .pesanan-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            /* hapus flex: 1 */
+        }
+
+        /* 🔥 GAMBAR PRODUK */
+        .pesanan-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        /* 🔥 JUDUL */
+        .pesanan-detail h3 {
+            margin: 0;
+            font-family: 'montserrat';
+        }
+
+        /* 🔥 TEXT */
+        .pesanan-detail p {
+            margin: 2px 0;
+            font-size: 0.90rem;
+            color: #777;
+        }

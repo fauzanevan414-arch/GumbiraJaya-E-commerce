@@ -26,7 +26,7 @@
                 </div>
             </div>
             <a href="{{route('keranjang')}}"><img class="keranjang" src="{{asset('images/shopping-cart_1055226.png')}}" alt="foto" width="50" height="50"></a>
-            <a href="" class="pesanan">Pesanan</a>
+            <a href="{{ route('pesanan') }}" class="pesanan">Pesanan</a>
             <a class="profile" href="{{route('profile')}}"><img src="{{asset('images/profile.png')}}" width="55" height="55"></a>
         </div>
     </div>
@@ -43,7 +43,7 @@
         <h3>{{$item->nama_produk}}</h3>
         <p class="stok">({{'Stok: '.$item->stok_produk}})</p>
         <p class="harga">{{'Rp. '.$item->harga_produk}}</p>
-        <button class="btnbeli" onclick="openModal({{ $item->id_produk }}, '{{ $item->nama_produk }}', {{ $item->harga_produk }})">Beli</button>
+        <button onclick="openModal('{{ $item->id_produk }}', '{{ $item->nama_produk }}', '{{ $item->harga_produk }}')">Beli</button>
         </div>
         @endforeach
     @endif
@@ -77,11 +77,18 @@
 
 <script>
 let produk = {};
-let qty = 1;
+let jumlah = 1;
 
 function openModal(id, nama, harga){
-    produk = {id, nama, harga};
-    qty = 1;
+    produk = {
+        id: parseInt(id),
+        nama: nama,
+        harga: parseInt(harga)
+    };
+    jumlah = 1;
+
+        console.log(produk);
+        console.log(jumlah);
 
     document.getElementById('modal').style.display = 'flex';
     document.getElementById('namaProduk').innerText = nama;
@@ -95,64 +102,95 @@ function closeModal(){
 }
 
 function tambah(){
-    qty++;
+    jumlah++;
     updateTotal();
 }
 
 function kurang(){
-    if(qty > 1){
-        qty--;
+    if(jumlah > 1){
+        jumlah--;
         updateTotal();
     }
 }
 
 function updateTotal(){
-    document.getElementById('qty').innerText = qty;
-    document.getElementById('totalHarga').innerText = 'Rp ' + (produk.harga * qty);
+    document.getElementById('qty').innerText = jumlah;
+    document.getElementById('totalHarga').innerText = 'Rp ' + (produk.harga * jumlah);
 }
 
 function beliSekarang(){
-    let pesan = `Halo, saya ingin membeli:\n${produk.nama}\nJumlah: ${qty}\nSistem (diantar/ambil ke toko): ...\nTotal: Rp ${produk.harga * qty}\n\nAlamat: ...`;
+    let total = produk.harga * jumlah;
 
-    let url = `https://wa.me/628889592318?text=${encodeURIComponent(pesan)}`;
+    let pesan = `Halo, saya ingin membeli:
+${produk.nama}
+Jumlah: ${jumlah}
+Total: Rp ${total}
+Sistem (diantar/ambil ke toko): ...
 
-    // kirim ke database pesanan
+Alamat: ...`;
+
     fetch('/pesanan/tambah', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
         },
         body: JSON.stringify({
             produk_id: produk.id,
-            qty: qty
-        })
-    });
-
-    window.open(url, '_blank');
-}
-
-function masukKeranjang(){
-    
-    fetch('/keranjang/tambah', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({
-            produk_id: produk.id,
-            qty: qty
+            jumlah: jumlah,
+            total_harga: total
         })
     })
     .then(res => res.json())
     .then(data => {
         if(data.success){
-            alert('Masuk keranjang!');
-            closeModal();
+            let url = `https://wa.me/628889592318?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
         } else {
-            alert(data.error);
+            alert(data.error || 'Gagal menyimpan pesanan');
         }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Terjadi error');
+    });
+}
+
+function masukKeranjang(){
+    fetch('/keranjang/tambah', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            produk_id: produk.id,
+            jumlah: jumlah
+        })
+    })
+    .then(res => {
+        console.log('Status:', res.status); // Lihat status HTTP-nya
+        return res.text(); // Pakai .text() dulu, bukan .json()
+    })
+    .then(text => {
+        console.log('Raw response:', text); // Lihat isi response-nya
+        try {
+            const data = JSON.parse(text);
+            if(data.success){
+                alert('Masuk keranjang!');
+                closeModal();
+            } else {
+                alert(data.error || 'Gagal!');
+            }
+        } catch(e) {
+            alert('Server tidak mengembalikan JSON: ' + text.substring(0, 100));
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Terjadi error!');
     });
 }
 </script>

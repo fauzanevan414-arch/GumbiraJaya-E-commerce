@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Keranjang;
 use App\Models\Pesanan;
+use App\Models\DetailPesanan;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -37,45 +38,39 @@ class ProdukController extends Controller
 
     public function tambahKeranjang(Request $request)
     {
-        // CEK LOGIN
         if (!session('id_user')) {
-            return response()->json(['error' => 'Harus login dulu']);
+            return response()->json(['success' => false, 'error' => 'Harus login dulu']);
         }
 
-        $user_id = session('id_user');
+        try {
+            $produk = Produk::find($request->produk_id);
 
-        $item = Keranjang::where('id_user', $user_id)
-            ->where('id_produk', $request->produk_id)
-            ->first();
+            if (!$produk) {
+                return response()->json(['success' => false, 'error' => 'Produk tidak ditemukan']);
+            }
 
-        if ($item) {
-            $item->jumlah += $request->jumlah;
-            $item->save();
-        } else {
-            Keranjang::create([
-                'id_user' => $user_id,
-                'id_produk' => $request->produk_id,
-                'jumlah' => $request->jumlah
-            ]);
+            // Cek apakah produk sudah ada di keranjang
+            $keranjang = Keranjang::where('id_user', session('id_user'))
+                ->where('id_produk', $request->produk_id)
+                ->first();
+
+            if ($keranjang) {
+                // Kalau sudah ada, tambah jumlahnya
+                $keranjang->jumlah += $request->jumlah;
+                $keranjang->save();
+            } else {
+                // Kalau belum ada, buat baru
+                Keranjang::create([
+                    'id_user'   => session('id_user'),
+                    'id_produk' => $request->produk_id,
+                    'jumlah'    => $request->jumlah,
+                ]);
+            }
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
-
-        return response()->json(['success' => true]);
-    }
-
-    public function tambahPesanan(Request $request)
-    {
-        // CEK LOGIN
-        if (!session('id_user')) {
-            return response()->json(['error' => 'Harus login dulu']);
-        }
-
-        Pesanan::create([
-            'id_user' => session('id_user'),
-            'id_produk' => $request->produk_id,
-            'jumlah' => $request->jumlah
-        ]);
-
-        return response()->json(['success' => true]);
     }
 
     public function keranjang()
@@ -90,5 +85,58 @@ class ProdukController extends Controller
             ->get();
 
         return view('keranjang', compact('keranjang'));
+    }
+
+
+    public function tambahPesanan(Request $request)
+    {
+        if (!session('id_user')) {
+            return response()->json(['error' => 'Harus login dulu']);
+        }
+
+        try {
+            // 🔥 ambil produk
+            $produk = Produk::find($request->produk_id);
+
+            if (!$produk) {
+                return response()->json(['error' => 'Produk tidak ditemukan']);
+            }
+
+            $pesanan = Pesanan::create([
+                'id_user' => session('id_user'),
+                'id_produk' => $request->produk_id,
+                'tanggal' => now(),
+                'total_harga' => $produk->harga_produk * $request->jumlah,
+                'status_pesanan' => 'pending',
+                'metode_pesanan' => 'whatsapp'
+            ]);
+
+            // 🔥 2. simpan ke detail_pesanan
+            DetailPesanan::create([
+                'id_pesanan' => $pesanan->id_pesanan,
+                'id_produk' => $request->produk_id,
+                'jumlah' => $request->jumlah,
+                'harga_satuan' => $produk->harga_produk
+            ]);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function halamanPesanan()
+    {
+        if (!session('id_user')) {
+            return redirect('/login');
+        }
+
+        $pesanan = Pesanan::where('id_user', session('id_user'))
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        return view('pesanan', compact('pesanan'));
     }
 }

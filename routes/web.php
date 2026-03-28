@@ -16,6 +16,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
 Route::post('/keranjang/tambah', [ProdukController::class, 'tambahKeranjang']);
 Route::post('/pesanan/tambah', [ProdukController::class, 'tambahPesanan']);
+Route::get('/pesanan', [ProdukController::class, 'halamanPesanan'])->name('pesanan');
 Route::get('/keranjang', [ProdukController::class, 'keranjang'])->name('keranjang');
     
 Route::get('/login', function () {
