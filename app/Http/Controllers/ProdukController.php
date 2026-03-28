@@ -139,4 +139,67 @@ class ProdukController extends Controller
 
         return view('pesanan', compact('pesanan'));
     }
+    public function hapusKeranjang(Request $request)
+{
+    $keranjang = Keranjang::find($request->id_keranjang);
+
+    if (!$keranjang || $keranjang->id_user != session('id_user')) {
+        return response()->json(['success' => false, 'error' => 'Item tidak ditemukan']);
+    }
+
+    $keranjang->delete();
+    return response()->json(['success' => true]);
 }
+
+public function beliKeranjang()
+{
+    if (!session('id_user')) {
+        return response()->json(['success' => false, 'error' => 'Harus login dulu']);
+    }
+
+    $keranjang = Keranjang::where('id_user', session('id_user'))
+        ->with('produk')
+        ->get();
+
+    if ($keranjang->isEmpty()) {
+        return response()->json(['success' => false, 'error' => 'Keranjang kosong']);
+    }
+
+    $pesanText = "Halo, saya ingin membeli:\n";
+    $grandTotal = 0;
+
+    foreach ($keranjang as $item) {
+        $subtotal = $item->produk->harga_produk * $item->jumlah;
+        $grandTotal += $subtotal;
+
+        $pesanan = Pesanan::create([
+            'id_user'        => session('id_user'),
+            'id_produk'      => $item->id_produk,
+            'tanggal'        => now(),
+            'total_harga'    => $subtotal,
+            'status_pesanan' => 'pending',
+            'metode_pesanan' => 'whatsapp'
+        ]);
+
+        DetailPesanan::create([
+            'id_pesanan'   => $pesanan->id_pesanan,
+            'id_produk'    => $item->id_produk,
+            'jumlah'       => $item->jumlah,
+            'harga_satuan' => $item->produk->harga_produk
+        ]);
+
+        $pesanText .= "- {$item->produk->nama_produk} x{$item->jumlah} = Rp {$subtotal}\n";
+    }
+
+    $pesanText .= "\nTotal: Rp {$grandTotal}";
+    $pesanText .= "\nSistem (diantar/ambil ke toko): ...\nAlamat: ...";
+
+    // Kosongkan keranjang setelah beli
+    Keranjang::where('id_user', session('id_user'))->delete();
+
+    $waUrl = 'https://wa.me/628889592318?text=' . urlencode($pesanText);
+
+    return response()->json(['success' => true, 'wa_url' => $waUrl]);
+}
+}
+

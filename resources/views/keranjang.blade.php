@@ -19,31 +19,72 @@
 <div class="page-wrapper">
     <h1>My Cart</h1>
 
-    @if($keranjang->isEmpty())
-        <div class="kosong">
-            <h2>Keranjang masih kosong</h2>
-        </div>
-    @else
-        @foreach($keranjang as $item)
-        <div class="cart-item">
-            <img src="{{ asset('images/' . $item->produk->gambar_produk) }}" alt="">
-            <div class="item-info">
-                <h3>{{ $item->produk->nama_produk }}</h3>
-                <p>Harga: Rp {{ $item->produk->harga_produk }}</p>
-                <p>Jumlah: {{ $item->jumlah }}</p>
-            </div>
-            <div class="item-total">
-                Rp {{ $item->produk->harga_produk * $item->jumlah }}
-            </div>
-        </div>
-        @endforeach
-
-        <div class="cart-summary">
-            <p>Grand Total</p>
-            <span>Rp {{ $keranjang->sum(fn($i) => $i->produk->harga_produk * $i->jumlah) }}</span>
-        </div>
-    @endif
+    @foreach($keranjang as $item)
+<div class="cart-item" id="item-{{ $item->id_keranjang }}">
+    <img src="{{ asset('images/' . $item->produk->gambar_produk) }}" alt="">
+    <div class="item-info">
+        <h3>{{ $item->produk->nama_produk }}</h3>
+        <p>Harga: Rp {{ $item->produk->harga_produk }}</p>
+        <p>Jumlah: {{ $item->jumlah }}</p>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+        <div class="item-total">Rp {{ $item->produk->harga_produk * $item->jumlah }}</div>
+        <button class="btn-hapus" onclick="hapusItem({{ $item->id_keranjang }})">🗑 Hapus</button>
+    </div>
 </div>
+@endforeach
+
+<div class="cart-summary">
+    <p>Grand Total</p>
+    <span>Rp {{ $keranjang->sum(fn($i) => $i->produk->harga_produk * $i->jumlah) }}</span>
+</div>
+
+<button class="btn-beli" onclick="beliSemua()">Beli Sekarang</button>
+
+<script>
+function hapusItem(id) {
+    if (!confirm('Hapus item ini?')) return;
+
+    fetch('/keranjang/hapus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({ id_keranjang: id })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('item-' + id).remove();
+            location.reload(); // reload biar grand total ikut update
+        } else {
+            alert(data.error || 'Gagal hapus!');
+        }
+    });
+}
+
+function beliSemua() {
+    fetch('/keranjang/beli', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.open(data.wa_url, '_blank');
+            window.location.reload();
+        } else {
+            alert(data.error || 'Gagal!');
+        }
+    });
+}
+</script>
     
 </body>
 </html>

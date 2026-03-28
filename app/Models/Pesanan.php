@@ -22,13 +22,17 @@ class Pesanan extends Model
         'metode_pesanan'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 
     public function produk()
     {
         return $this->belongsTo(Produk::class, 'id_produk');
     }
 
-    public function detail()
+    public function detailPesanan()
     {
         return $this->hasMany(DetailPesanan::class, 'id_pesanan');
     }

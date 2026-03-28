@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 
@@ -18,7 +19,24 @@ Route::post('/keranjang/tambah', [ProdukController::class, 'tambahKeranjang']);
 Route::post('/pesanan/tambah', [ProdukController::class, 'tambahPesanan']);
 Route::get('/pesanan', [ProdukController::class, 'halamanPesanan'])->name('pesanan');
 Route::get('/keranjang', [ProdukController::class, 'keranjang'])->name('keranjang');
-    
+Route::post('/keranjang/hapus', [ProdukController::class, 'hapusKeranjang']);
+Route::post('/keranjang/beli', [ProdukController::class, 'beliKeranjang']);
+// ── ADMIN ROUTES ──────────────────────────────────────────────
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+ 
+// Produk
+Route::post('/admin/produk/tambah', [AdminController::class, 'tambahProduk'])->name('admin.produk.tambah');
+Route::put('/admin/produk/{id}',    [AdminController::class, 'editProduk'])->name('admin.produk.edit');
+Route::delete('/admin/produk/{id}', [AdminController::class, 'hapusProduk'])->name('admin.produk.hapus');
+ 
+// Pesanan
+Route::post('/admin/pesanan/{id}/status', [AdminController::class, 'updateStatusPesanan'])->name('admin.pesanan.status');
+
+Route::get('/admin/login',  [AdminController::class, 'loginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'loginPost'])->name('admin.login.post');
+Route::post('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout');
+
+
 Route::get('/login', function () {
     return view('tampilan_login');
 })->name('login');

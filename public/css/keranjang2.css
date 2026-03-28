@@ -100,3 +100,29 @@
     font-size: 1.2rem;
     margin-bottom: 12px;
 }
+
+.btn-hapus {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+.btn-hapus:hover { color: #e74c3c; }
+
+.btn-beli {
+    display: block;
+    width: 200px;
+    padding: 12px;
+    background: #f39c12;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.2s;
+}
+.btn-beli:hover { background: #d68910; }
